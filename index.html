@@ -86,7 +86,7 @@ function callback() {
   let gray2 = new cv.Mat();
   cv.cvtColor(src1, gray1, cv.COLOR_RGBA2GRAY);
   cv.cvtColor(src2, gray2, cv.COLOR_RGBA2GRAY);
-  cv.subtract(gray1, gray2, dst);
+  cv.absdiff(gray1, gray2, dst);
   cv.imshow("canvasOutput", dst);
   src1.delete();
   src2.delete();
@@ -100,6 +100,8 @@ function resetCallback(){
   inputElement2.value = "";
   imgElement1.src = "./assets/images/tomato.jpg";
   imgElement2.src = "./assets/images/tomato.jpg";
+  var canvas = document.getElementById("canvasOutput");
+  canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
   showImage();
 }
 
